@@ -3,6 +3,7 @@ __pycache__/
 db.sqlite3
 .env
 .git/
-db.sqlite3-shm
+Notes.md
 db.sqlite3-wal
+db.sqlite3-shm
 .vscode/settings.json
