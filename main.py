@@ -2,7 +2,10 @@ from fastapi import FastAPI, Depnds, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from passlib.hash import bcrypt
 
-
+from tortoise import fields
+from tortoise.models import Model
+from tortoise.contrib.fastapi import register_tortoise
+from tortoise.contrib.pydantic import pydantic_model_creator
 
 import aiohttp
 import asyncio
@@ -18,6 +21,17 @@ async def startup_event():
 @app.on_event('shutdown')
 async def shutdown_event():
     await session.close()
+
+class User(Model):
+    id = fields.IntField(pk=True)
+    username = fields.CharField(50, unique=True)
+    password_hash = fields.CharField(128)
+
+    def verify_password(self, password):
+        return bcrypt.verify(password, self.password_hash)
+
+User_Pydantic = pydantic_model_creator(User, name='User')
+UserIn_Pydantic = pydantic_model_creator(User, name='UserIn', exclude_readonly=True)
 
 class City(Model):
     id = fields.IntField(pk=True)
