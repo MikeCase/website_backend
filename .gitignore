@@ -2,3 +2,6 @@ __pycache__/
 .venv/
 db.sqlite3
 .env
+Notes.md
+db.sqlite3-wal
+db.sqlite3-shm

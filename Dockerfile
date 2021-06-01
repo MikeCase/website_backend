@@ -7,5 +7,6 @@ RUN pip install -r requirements.txt
 
 ADD . /app/
 
-EXPOSE 8000
+EXPOSE 8005
+
 CMD ["hypercorn", "main:app", "--bind", "0.0.0.0:8000", "--reload"]
