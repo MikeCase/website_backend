@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+    api:
+        image: mcusapi:latest
+        ports:
+            - 8005:8000
+        volumes:
+            - type: bind
+              source: .
+              target: /app/
