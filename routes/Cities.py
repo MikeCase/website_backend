@@ -18,8 +18,6 @@ async def get_cities():
 
     await asyncio.gather(*tasks)
     return cities
-# 89234989181
-# 516679
 
 @cityRoutes.get('/cities/{city_id}')
 async def get_city(city_id: int):
