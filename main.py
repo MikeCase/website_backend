@@ -9,6 +9,7 @@ from tortoise.contrib.fastapi import register_tortoise
 # Import our routes
 from routes import Users, Cities
 from dependencies import SingletonAiohttp
+
 fastAPI_logger = logger
 
 async def on_start_up() -> None:
